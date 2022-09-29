@@ -50,7 +50,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
         String subject = null;
 
         try {
-            subject = Jwts.parser().setSigningKey(env.getProperty("token.secret"))
+            subject = Jwts.parser().setSigningKey(env.getProperty("token.secret")) // JWS 서명 검증을 위한 secretkey 혹은 비대칭 공개키를 지정
                 .parseClaimsJws(jwt).getBody()
                 .getSubject();
         } catch (Exception e) {
